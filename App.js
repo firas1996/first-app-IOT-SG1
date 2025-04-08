@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import TestItem from "./src/components/TestItem";
 
 export default function App() {
   return (
@@ -20,7 +21,23 @@ export default function App() {
           <Text style={styles.btnTXT}>Add</Text>
         </TouchableOpacity>
       </View>
-      <View style={styles.v2}></View>
+      <View style={styles.v2}>
+        <TestItem />
+        <TestItem />
+        <TestItem />
+        <TestItem />
+        <TestItem />
+        <TestItem />
+        <TestItem />
+        <TestItem />
+        <TestItem />
+        <TestItem />
+        <TestItem />
+        <TestItem />
+        <TestItem />
+        <TestItem />
+        <TestItem />
+      </View>
     </View>
   );
 }
@@ -31,7 +48,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 15,
   },
   v1: {
     width: "100%",
@@ -42,7 +58,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-evenly",
   },
-  v2: { width: "100%", flex: 8, backgroundColor: "blue" },
+  v2: { width: "100%", flex: 8, backgroundColor: "blue", alignItems: "center" },
   input: {
     height: 40,
     borderWidth: 1,
