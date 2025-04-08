@@ -14,10 +14,11 @@ export default TestItem;
 const styles = StyleSheet.create({
   item: {
     width: "90%",
-    backgroundColor: "brown",
+    backgroundColor: "#261FB3",
     marginVertical: 6,
     padding: 10,
     borderRadius: 15,
+    alignSelf: "center",
   },
   itemTXT: {
     color: "white",

@@ -1,5 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import {
+  FlatList,
   StyleSheet,
   Text,
   TextInput,
@@ -9,34 +10,21 @@ import {
 import TestItem from "./src/components/TestItem";
 
 export default function App() {
+  const data = [];
   return (
     <View style={styles.container}>
       <View style={styles.v1}>
-        <TextInput
-          style={styles.input}
-          placeholder="useless placeholder"
-          keyboardType="numeric"
-        />
+        <TextInput style={styles.input} placeholder="useless placeholder" />
         <TouchableOpacity style={styles.btn}>
           <Text style={styles.btnTXT}>Add</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.v2}>
-        <TestItem />
-        <TestItem />
-        <TestItem />
-        <TestItem />
-        <TestItem />
-        <TestItem />
-        <TestItem />
-        <TestItem />
-        <TestItem />
-        <TestItem />
-        <TestItem />
-        <TestItem />
-        <TestItem />
-        <TestItem />
-        <TestItem />
+        <FlatList
+          style={{ width: "100%" }}
+          data={data}
+          renderItem={(item) => <TestItem />}
+        />
       </View>
     </View>
   );
@@ -45,7 +33,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#FBE4D6",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -53,12 +41,11 @@ const styles = StyleSheet.create({
     width: "100%",
     flex: 1,
     marginTop: 48,
-    backgroundColor: "red",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-evenly",
   },
-  v2: { width: "100%", flex: 8, backgroundColor: "blue", alignItems: "center" },
+  v2: { width: "100%", flex: 8, alignItems: "center" },
   input: {
     height: 40,
     borderWidth: 1,
@@ -73,7 +60,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   btn: {
-    backgroundColor: "green",
+    backgroundColor: "#0C0950",
     paddingVertical: 8,
     paddingHorizontal: 12,
     borderRadius: 12,
