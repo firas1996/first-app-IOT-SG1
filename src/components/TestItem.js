@@ -1,10 +1,11 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-const TestItem = () => {
+const TestItem = ({ title }) => {
+  // const {title}=props
   return (
     <View style={styles.item}>
-      <Text style={styles.itemTXT}>TestItem</Text>
+      <Text style={styles.itemTXT}>{title}</Text>
     </View>
   );
 };

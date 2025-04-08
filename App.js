@@ -8,14 +8,31 @@ import {
   View,
 } from "react-native";
 import TestItem from "./src/components/TestItem";
+import { useState } from "react";
 
 export default function App() {
-  const data = [];
+  const [data, setData] = useState([]);
+  const [imp, setImp] = useState("");
+  const inputHandler = (a) => {
+    setImp(a);
+  };
+  const addItem = () => {
+    if (imp.trim().length > 0) {
+      setData([...data, imp]);
+      setImp("");
+    }
+  };
+  console.log(data);
   return (
     <View style={styles.container}>
       <View style={styles.v1}>
-        <TextInput style={styles.input} placeholder="useless placeholder" />
-        <TouchableOpacity style={styles.btn}>
+        <TextInput
+          style={styles.input}
+          placeholder="useless placeholder"
+          onChangeText={inputHandler}
+          value={imp}
+        />
+        <TouchableOpacity style={styles.btn} onPress={addItem}>
           <Text style={styles.btnTXT}>Add</Text>
         </TouchableOpacity>
       </View>
@@ -23,7 +40,7 @@ export default function App() {
         <FlatList
           style={{ width: "100%" }}
           data={data}
-          renderItem={(item) => <TestItem />}
+          renderItem={({ item }) => <TestItem title={item} />}
         />
       </View>
     </View>
