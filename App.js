@@ -18,9 +18,16 @@ export default function App() {
   };
   const addItem = () => {
     if (imp.trim().length > 0) {
-      setData([...data, imp]);
+      setData([...data, { id: Math.random(), title: imp, isFav: false }]);
       setImp("");
     }
+  };
+  const editItem = (id) => {
+    setData(
+      data.map((item) => {
+        return item.id === id ? { ...item, isFav: !item.isFav } : item;
+      })
+    );
   };
   console.log(data);
   return (
@@ -40,7 +47,14 @@ export default function App() {
         <FlatList
           style={{ width: "100%" }}
           data={data}
-          renderItem={({ item }) => <TestItem title={item} />}
+          renderItem={({ item }) => (
+            <TestItem
+              title={item.title}
+              id={item.id}
+              isFav={item.isFav}
+              editItem={editItem}
+            />
+          )}
         />
       </View>
     </View>
