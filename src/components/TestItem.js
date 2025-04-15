@@ -1,11 +1,12 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import AntDesign from "@expo/vector-icons/AntDesign";
 
 const TestItem = ({ title }) => {
   // const {title}=props
   return (
     <View style={styles.item}>
       <Text style={styles.itemTXT}>{title}</Text>
+      <AntDesign name="heart" size={28} color="white" />
     </View>
   );
 };
@@ -20,6 +21,8 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 15,
     alignSelf: "center",
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   itemTXT: {
     color: "white",
