@@ -1,4 +1,8 @@
 import { StatusBar } from "expo-status-bar";
+import "./gesture-handler";
+import { NavigationContainer } from "@react-navigation/native";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import { createStackNavigator } from "@react-navigation/stack";
 import {
   FlatList,
   StyleSheet,
@@ -9,8 +13,15 @@ import {
 } from "react-native";
 import TestItem from "./src/components/TestItem";
 import { useState } from "react";
+import Home from "./src/screens/Home";
+import Fav from "./src/screens/Fav";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Register from "./src/screens/Register";
 
 export default function App() {
+  const Stack = createStackNavigator();
+  const Drawer = createDrawerNavigator();
+  const BTab = createBottomTabNavigator();
   const [data, setData] = useState([]);
   const [imp, setImp] = useState("");
   const inputHandler = (a) => {
@@ -31,33 +42,40 @@ export default function App() {
   };
   console.log(data);
   return (
-    <View style={styles.container}>
-      <View style={styles.v1}>
-        <TextInput
-          style={styles.input}
-          placeholder="useless placeholder"
-          onChangeText={inputHandler}
-          value={imp}
-        />
-        <TouchableOpacity style={styles.btn} onPress={addItem}>
-          <Text style={styles.btnTXT}>Add</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.v2}>
-        <FlatList
-          style={{ width: "100%" }}
-          data={data}
-          renderItem={({ item }) => (
-            <TestItem
-              title={item.title}
-              id={item.id}
-              isFav={item.isFav}
-              editItem={editItem}
-            />
-          )}
-        />
-      </View>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="SignUp" component={Register} />
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Fav" component={Fav} />
+      </Stack.Navigator>
+    </NavigationContainer>
+    // <View style={styles.container}>
+    //   <View style={styles.v1}>
+    //     <TextInput
+    //       style={styles.input}
+    //       placeholder="useless placeholder"
+    //       onChangeText={inputHandler}
+    //       value={imp}
+    //     />
+    //     <TouchableOpacity style={styles.btn} onPress={addItem}>
+    //       <Text style={styles.btnTXT}>Add</Text>
+    //     </TouchableOpacity>
+    //   </View>
+    //   <View style={styles.v2}>
+    //     <FlatList
+    //       style={{ width: "100%" }}
+    //       data={data}
+    //       renderItem={({ item }) => (
+    //         <TestItem
+    //           title={item.title}
+    //           id={item.id}
+    //           isFav={item.isFav}
+    //           editItem={editItem}
+    //         />
+    //       )}
+    //     />
+    //   </View>
+    // </View>
   );
 }
 
