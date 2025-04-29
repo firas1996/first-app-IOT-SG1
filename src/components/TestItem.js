@@ -1,7 +1,10 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
+import { useContext } from "react";
+import FavStore from "../store/FavContext";
 
-const TestItem = ({ title, id, isFav, editItem }) => {
+const TestItem = ({ title, id, isFav }) => {
+  const { editItem } = useContext(FavStore);
   const favHandler = () => {
     editItem(id);
   };

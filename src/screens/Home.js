@@ -7,31 +7,20 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import TestItem from "../components/TestItem";
+import FavStore from "../store/FavContext";
 
 const Home = () => {
   const navigation = useNavigation();
-  const [data, setData] = useState([]);
+  const { data, addItem } = useContext(FavStore);
+
   const [imp, setImp] = useState("");
   const inputHandler = (a) => {
     setImp(a);
   };
-
-  const addItem = () => {
-    if (imp.trim().length > 0) {
-      setData([...data, { id: Math.random(), title: imp, isFav: false }]);
-      setImp("");
-    }
-  };
-  const editItem = (id) => {
-    setData(
-      data.map((item) => {
-        return item.id === id ? { ...item, isFav: !item.isFav } : item;
-      })
-    );
-  };
+  console.log(data);
   return (
     <View style={styles.container}>
       <Button
@@ -47,7 +36,13 @@ const Home = () => {
           onChangeText={inputHandler}
           value={imp}
         />
-        <TouchableOpacity style={styles.btn} onPress={addItem}>
+        <TouchableOpacity
+          style={styles.btn}
+          onPress={() => {
+            addItem(imp);
+            setImp("");
+          }}
+        >
           <Text style={styles.btnTXT}>Add</Text>
         </TouchableOpacity>
       </View>
@@ -56,12 +51,7 @@ const Home = () => {
           style={{ width: "100%" }}
           data={data}
           renderItem={({ item }) => (
-            <TestItem
-              title={item.title}
-              id={item.id}
-              isFav={item.isFav}
-              editItem={editItem}
-            />
+            <TestItem title={item.title} id={item.id} isFav={item.isFav} />
           )}
         />
       </View>
