@@ -45,17 +45,25 @@ const Register = () => {
         // ..
       });
   };
-  const createUser = async () => {
+  const createUser = /*async*/ () => {
+    axios
+      .post("http://10.33.1.4:1234/users/signin", { email, password })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     // const res = await axios.post("http://10.33.1.4:1234/users/signup", {
     //   email,
     //   password,
     // });
-    const res = await axios.post("http://10.33.1.4:1234/users/signin", {
-      email,
-      password,
-    });
-    // const res = await axios.get("http://10.33.1.4:1234/users");
-    console.log(res.data.token);
+    // const res = await axios.post("http://10.33.1.4:1234/users/signin", {
+    //   email,
+    //   password,
+    // });
+    // // const res = await axios.get("http://10.33.1.4:1234/users");
+    // console.log(res.data.token);
   };
   return (
     <View style={styles.container}>
@@ -76,7 +84,7 @@ const Register = () => {
         value={password}
         secureTextEntry
       />
-      <Button title="Sign Up" onPress={loginWithFirebase} />
+      <Button title="Sign Up" onPress={registerWithFirebase} />
     </View>
   );
 };

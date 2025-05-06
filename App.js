@@ -12,9 +12,9 @@ export default function App() {
     <NavigationContainer>
       <FavProvider>
         <Stack.Navigator>
+          <Stack.Screen name="SignUp" component={Register} />
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Fav" component={Fav} />
-          <Stack.Screen name="SignUp" component={Register} />
         </Stack.Navigator>
       </FavProvider>
     </NavigationContainer>
